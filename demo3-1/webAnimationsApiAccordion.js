@@ -2,90 +2,93 @@ document.addEventListener("DOMContentLoaded", () => {
   setUpAccordion();
 });
 
+/**
+ * ブラウザの標準機能(Web Animations API)を使ってアコーディオンのアニメーションを制御します
+ */
 const setUpAccordion = () => {
   const details = document.querySelectorAll(".js-details");
+  const IS_RUNNING_CLASS = "is-running"; // アニメーション実行中のときに付与する予定のクラス名
+  const IS_OPENED_CLASS = "is-opened"; // アイコン操作用のクラス名
 
-  details.forEach(element => {
+  details.forEach((element) => {
     const summary = element.querySelector(".js-summary");
     const content = element.querySelector(".js-content");
-    // アニメーション実行中か？
-    let isRunning = false;
 
     summary.addEventListener("click", (event) => {
       // デフォルトの挙動を無効化
       event.preventDefault();
 
-      // アニメーション中だったらクリックベントを受け付けないでリターンする
-      if (isRunning) {
+      // 連打防止用。アニメーション中だったらクリックイベントを受け付けないでリターンする
+      if (element.classList.contains(IS_RUNNING_CLASS)) {
         return;
       }
 
+      // detailsのopen属性を判定
       if (element.open) {
         // アコーディオンを閉じるときの処理
-        // フラグを立てる
-        isRunning = true;
+        // アイコンを操作用クラスを切り替える(クラスを取り除く)
+        element.classList.toggle(IS_OPENED_CLASS);
 
-        // アイコンを操作するためのis-openクラスを切り替える(クラスを取り除く)
-        element.classList.toggle("is-open");
+        // アニメーションを実行
+        const closeAccordion = content.animate(closeAccordionKeyframes(content), accordionTiming);
+        // アニメーション実行中クラスを付与する
+        element.classList.add(IS_RUNNING_CLASS);
 
-        // アニメーション実行
-        closeAccordion(content).onfinish = () => {
+        // アニメーションの完了後にaddClosedState関数を実行する
+        closeAccordion.onfinish = () => {
           // アニメーションの完了後にopen属性を取り除く
           element.removeAttribute("open");
-          // フラグをおろす
-          isRunning = false;
-        }
-
+          // アニメーション実行中用のクラスを取り除く
+          element.classList.remove(IS_RUNNING_CLASS);
+        };
       } else {
         // アコーディオンを開くときの処理
-        // フラグを立てる
-        isRunning = true;
-
-        // アイコンを操作するためのis-openクラスを切り替える(クラスを付与)
-        element.classList.toggle("is-open");
-
         // open属性を付与
         element.setAttribute("open", "true");
 
-        // アニメーション実行
-        openAccordion(content).onfinish = () => {
-          // アニメーション完了後にフラグをおろす
-          isRunning = false;
-        }
+        // アイコンを操作用クラスを切り替える(クラスを付与)
+        element.classList.toggle(IS_OPENED_CLASS);
+
+        // アニメーションを実行
+        const openAccordion = content.animate(openAccordionKeyframes(content), accordionTiming);
+        // アニメーション実行中クラスを付与する
+        element.classList.add(IS_RUNNING_CLASS);
+
+        // アニメーション完了後にクラスを取り除く
+        openAccordion.onfinish = () => element.classList.remove(IS_RUNNING_CLASS);
       }
     });
   });
 }
 
-
 /**
- * アコーディオンを閉じる時のアニメーション
+ * アニメーションの時間
  */
-const closeAccordion = (content) => content.animate([{
-    height: content.offsetHeight + 'px',
-    opacity: 1,
-  }, {
-    height: 0,
-    opacity: 0,
-  }],
-  {
-    duration: 400,
-    easing: "ease-out"
-  }
-);
-
-/**
- * アコーディオンを開く時のアニメーション
- */
-const openAccordion = (content) => content.animate([
-  {
-    height: 0,
-    opacity: 0,
-  }, {
-    height: content.offsetHeight + 'px',
-    opacity: 1,
-  }
-], {
+const accordionTiming = {
   duration: 400,
   easing: "ease-out"
-});
+};
+
+/**
+ * アコーディオンを閉じるときのキーフレーム
+ */
+const closeAccordionKeyframes = (content) => [{
+  height: content.offsetHeight + 'px', // height: "auto"だとうまく計算されないため要素の高さを指定する
+  opacity: 1,
+}, {
+  height: 0,
+  opacity: 0,
+}];
+
+/**
+ * アコーディオンを開くときのキーフレーム
+ */
+const openAccordionKeyframes = (content) => [
+  {
+    height: 0,
+    opacity: 0,
+  }, {
+    height: content.offsetHeight + 'px',
+    opacity: 1,
+  }
+];

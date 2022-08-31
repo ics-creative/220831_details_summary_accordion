@@ -36,8 +36,8 @@ summary::-webkit-details-marker {
   transition: transform 0.4s;
 }
 
-/* is-openクラスが付与されたときのスタイル */
-details.is-open .icon {
+/* is-openedクラスが付与されたときのスタイル */
+details.is-opened .icon {
   transform: rotate(180deg);
 }
 

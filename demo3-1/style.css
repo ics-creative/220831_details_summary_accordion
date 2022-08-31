@@ -36,12 +36,12 @@ summary::-webkit-details-marker {
   transition: transform 0.4s;
 }
 
-/* details[open] .icon {
-  transform: rotate(180deg);
-} */
+/*details[open] .icon {*/
+/*  transform: rotate(180deg);*/
+/*}*/
 
-/* is-openクラスが付与されたときのスタイル */
-details.is-open .icon {
+/* is-openedクラスが付与されたときのスタイル */
+details.is-opened .icon {
   transform: rotate(180deg);
 }
 

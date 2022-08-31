@@ -1,0 +1,75 @@
+details {
+  width: 500px;
+  margin-bottom: 16px;
+}
+
+summary {
+  cursor: pointer;
+  /* display: list-item;以外を指定してデフォルトの三角形アイコンを消します */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border: 1px solid #d2beff;
+  font-weight: bold;
+  color: #002255;
+}
+
+summary::-webkit-details-marker {
+  /* Safariで表示されるデフォルトの三角形アイコンを消します */
+  display: none;
+}
+
+.icon {
+  display: block;
+  position: relative;
+  width: 24px;
+  transition: transform 0.4s;
+}
+
+/* is-openクラスが付与されたときのスタイル */
+details.is-open .icon {
+  transform: rotate(180deg);
+}
+
+/* アイコンのバーの部分のスタイルです */
+.icon::before,
+.icon::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 15px;
+  height: 3px;
+  background-color: #7050ff;
+}
+
+.icon::before {
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.icon::after {
+  right: 0;
+  transform: rotate(-45deg);
+}
+
+/* --------アコーディオンの中身のスタイル-------- */
+.accordion-content {
+  overflow: hidden;
+  background-color: #f0f2ff;
+
+  /* paddingを設定すると挙動がおかしくなるので、details直下のタグには設定しない */
+}
+
+.accordion-content div {
+  padding: 24px 48px;
+}
+
+ul {
+  padding: 24px 48px;
+}
+
+.helper-mb16 {
+  margin-bottom: 16px;
+}

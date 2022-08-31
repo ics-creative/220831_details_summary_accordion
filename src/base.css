@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 32px;
+  background-color: #fdfdfd;
+  color: #222;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: normal;
+  margin-bottom: 16px;
+}
+
+footer {
+  margin-top: 40vh;
+}
+
+nav ul {
+  color: #aac;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 12px;
+}
+
+nav span {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+nav a {
+  color: royalblue;
+  text-underline-offset: 4px;
+}
+
+nav a:visited {
+  color: #7050ff;
+}
+
+.current-page {
+  color: #222;
+}
+
+.top-page span {
+  color: #222;
+}

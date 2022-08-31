@@ -3,6 +3,12 @@ details {
   margin-bottom: 16px;
 }
 
+@media (max-width: 750px) {
+  details {
+    width: 100%;
+  }
+}
+
 summary {
   cursor: pointer;
   /* display: list-item;以外を指定してデフォルトの三角形アイコンを消します */
@@ -59,21 +65,21 @@ details.is-open .icon {
 }
 
 /* --------アコーディオンの中身のスタイル-------- */
-.accordion-content {
+.content {
   overflow: hidden;
   background-color: #f0f2ff;
 
-  /* paddingを設定すると挙動がおかしくなるので、details直下のタグには設定しない */
+  /* details直下のタグにpaddingを設定すると挙動がおかしくなるので、ここには設定しない */
 }
 
-.accordion-content div {
+.content_inner {
   padding: 24px 48px;
 }
 
-ul {
-  padding: 24px 48px;
+.content_text {
+  line-height: 1.8;
 }
 
-.helper-mb16 {
+.content_text__mb16 {
   margin-bottom: 16px;
 }

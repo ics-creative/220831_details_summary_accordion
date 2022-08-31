@@ -21,33 +21,33 @@ footer {
   margin-top: 40vh;
 }
 
-nav ul {
-  color: #aac;
+.navigation ul {
   list-style: none;
+  color: #aac;
 }
 
-nav li {
+.navigation li {
   margin-bottom: 12px;
 }
 
-nav span {
-  display: inline-block;
-  margin-right: 16px;
-}
-
-nav a {
+.navigation a {
   color: royalblue;
   text-underline-offset: 4px;
 }
 
-nav a:visited {
+.navigation a:visited {
   color: #7050ff;
 }
 
-.current-page {
+.navigation span {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+.navigation__topPage span {
   color: #222;
 }
 
-.top-page span {
+.navigation_currentPage {
   color: #222;
 }

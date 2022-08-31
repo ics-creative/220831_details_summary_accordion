@@ -32,6 +32,8 @@ summary::-webkit-details-marker {
   display: block;
   position: relative;
   width: 24px;
+  flex-shrink: 0;
+  transform-origin: center 43%;
   transition: transform 0.4s;
 }
 
@@ -61,18 +63,18 @@ details[open] .icon {
   transform: rotate(-45deg);
 }
 
-
 /* --------summaryタグの疑似要素でアイコンを作る場合-------- */
 .wrapper_pseudoElementsIcon summary::after {
   content: "";
   display: block;
   width: 25px;
   height: 16px;
+  flex-shrink: 0;
   background-image: url("icon.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  transform-origin: center 7.5px;
+  transform-origin: center 43%;
   /* アコーディオンが閉じる時にアイコンをアニメーションさせます */
   animation: 0.2s linear close-animation;
 }
@@ -114,16 +116,11 @@ details[open] summary::after {
 .content {
   background-color: #f0f2ff;
   padding: 24px 48px;
-}
-
-.content_text {
   line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-
-.content_text__mb16 {
-  margin-bottom: 16px;
-}
-
 
 /* --------レイアウト用-------- */
 .wrapper {

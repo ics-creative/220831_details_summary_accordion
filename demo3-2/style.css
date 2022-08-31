@@ -31,6 +31,8 @@ summary::-webkit-details-marker {
   display: block;
   position: relative;
   width: 24px;
+  flex-shrink: 0;
+  transform-origin: center 43%;
   transition: transform 0.4s;
 }
 
@@ -70,12 +72,8 @@ details.is-open .icon {
 
 .content_inner {
   padding: 24px 48px;
-}
-
-.content_text {
   line-height: 1.8;
-}
-
-.content_text__mb16 {
-  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

@@ -67,12 +67,11 @@ details.is-opened .icon {
   overflow: hidden;
   background-color: #f0f2ff;
 
-  /* details直下のタグにpaddingを設定すると挙動がおかしくなるので、ここには設定しない */
+  /* details直下のタグにpaddingを設定すると挙動がおかしくなるので、ここには指定しない */
 }
 
 .content_inner {
   padding: 24px 48px;
-  line-height: 1.8;
   display: flex;
   flex-direction: column;
   gap: 16px;

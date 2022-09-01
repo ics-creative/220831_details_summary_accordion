@@ -74,13 +74,15 @@ const accordionTiming = {
 /**
  * アコーディオンを閉じるときのキーフレーム
  */
-const closeAccordionKeyframes = (content) => [{
-  height: content.offsetHeight + 'px', // height: "auto"だとうまく計算されないため要素の高さを指定する
-  opacity: 1,
-}, {
-  height: 0,
-  opacity: 0,
-}];
+const closeAccordionKeyframes = (content) => [
+  {
+    height: content.offsetHeight + 'px', // height: "auto"だとうまく計算されないため要素の高さを指定する
+    opacity: 1,
+  }, {
+    height: 0,
+    opacity: 0,
+  }
+];
 
 /**
  * アコーディオンを開くときのキーフレーム

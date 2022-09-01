@@ -128,7 +128,7 @@ details[open] summary::after {
   gap: 24px;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1070px) {
   .wrapper {
     flex-direction: column;
   }

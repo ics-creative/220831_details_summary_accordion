@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 const setUpAccordion = () => {
   const details = document.querySelectorAll(".js-details");
-  const IS_RUNNING_CLASS = "is-running"; // アニメーション実行中のときに付与する予定のクラス名
+  const RUNNING_VALUE = "running"; // アニメーション実行中のときに付与する予定のカスタムデータ属性の値
   const IS_OPENED_CLASS = "is-opened"; // アイコン操作用のクラス名
 
   details.forEach((element) => {
@@ -19,43 +19,45 @@ const setUpAccordion = () => {
       event.preventDefault();
 
       // 連打防止用。アニメーション中だったらクリックイベントを受け付けないでリターンする
-      if (element.classList.contains(IS_RUNNING_CLASS)) {
+      if (element.dataset.isRunning === RUNNING_VALUE) {
         return;
       }
 
       // detailsのopen属性を判定
       if (element.open) {
         // アコーディオンを閉じるときの処理
-        // アイコンを操作用クラスを切り替える(クラスを取り除く)
+        // アイコン操作用クラスを切り替える(クラスを取り除く)
         element.classList.toggle(IS_OPENED_CLASS);
 
         // アニメーションを実行
         const closeAccordion = content.animate(closeAccordionKeyframes(content), accordionTiming);
-        // アニメーション実行中クラスを付与する
-        element.classList.add(IS_RUNNING_CLASS);
+        // アニメーション実行中用の値を付与
+        element.dataset.isRunning = RUNNING_VALUE;
 
-        // アニメーションの完了後にaddClosedState関数を実行する
+        // アニメーションの完了後に
         closeAccordion.onfinish = () => {
-          // アニメーションの完了後にopen属性を取り除く
+          // open属性を取り除く
           element.removeAttribute("open");
-          // アニメーション実行中用のクラスを取り除く
-          element.classList.remove(IS_RUNNING_CLASS);
+          // アニメーション実行中用の値を取り除く
+          element.dataset.isRunning = "";
         };
       } else {
         // アコーディオンを開くときの処理
         // open属性を付与
         element.setAttribute("open", "true");
 
-        // アイコンを操作用クラスを切り替える(クラスを付与)
+        // アイコン操作用クラスを切り替える(クラスを付与)
         element.classList.toggle(IS_OPENED_CLASS);
 
         // アニメーションを実行
         const openAccordion = content.animate(openAccordionKeyframes(content), accordionTiming);
-        // アニメーション実行中クラスを付与する
-        element.classList.add(IS_RUNNING_CLASS);
+        // アニメーション実行中用の値を入れる
+        element.dataset.isRunning = RUNNING_VALUE;
 
-        // アニメーション完了後にクラスを取り除く
-        openAccordion.onfinish = () => element.classList.remove(IS_RUNNING_CLASS);
+        // アニメーション完了後にアニメーション実行中用の値を取り除く
+        openAccordion.onfinish = () => {
+          element.dataset.isRunning = "";
+        };
       }
     });
   });

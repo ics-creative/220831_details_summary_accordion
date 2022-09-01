@@ -11,6 +11,12 @@ body {
   color: #222;
 }
 
+@media (max-width: 750px) {
+  body {
+    margin: 16px;
+  }
+}
+
 h1 {
   font-size: 48px;
   font-weight: normal;

@@ -1,6 +1,5 @@
 details {
   width: 500px;
-  margin-bottom: 16px;
 }
 
 @media (max-width: 750px) {
@@ -31,6 +30,7 @@ summary::-webkit-details-marker {
   display: block;
   position: relative;
   width: 24px;
+  margin-left: 6px;
   flex-shrink: 0;
   transform-origin: center 43%;
   transition: transform 0.4s;
@@ -45,7 +45,7 @@ details.is-opened .icon {
   transform: rotate(180deg);
 }
 
-/* アイコンのバーの部分のスタイルです */
+/* アイコンのバーのスタイル */
 .icon::before,
 .icon::after {
   content: "";
@@ -76,6 +76,13 @@ details.is-opened .icon {
 
 .content_inner {
   padding: 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* --------レイアウト用のスタイル-------- */
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 16px;

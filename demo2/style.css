@@ -1,6 +1,5 @@
 details {
   width: 500px;
-  margin-bottom: 16px;
 }
 
 @media (max-width: 750px) {
@@ -32,6 +31,7 @@ summary::-webkit-details-marker {
   display: block;
   position: relative;
   width: 24px;
+  margin-left: 6px;
   flex-shrink: 0;
   transform-origin: center 43%;
   transition: transform 0.4s;
@@ -42,7 +42,7 @@ details[open] .icon {
   transform: rotate(180deg);
 }
 
-/* アイコンのバーの部分のスタイルです */
+/* アイコンのバーのスタイル */
 .icon::before,
 .icon::after {
   content: "";
@@ -69,6 +69,7 @@ details[open] .icon {
   display: block;
   width: 25px;
   height: 16px;
+  margin-left: 6px;
   flex-shrink: 0;
   background-image: url("icon.svg");
   background-size: contain;
@@ -121,7 +122,7 @@ details[open] summary::after {
   gap: 16px;
 }
 
-/* --------レイアウト用-------- */
+/* --------レイアウト用のスタイル-------- */
 .wrapper {
   display: flex;
   gap: 24px;
@@ -131,6 +132,12 @@ details[open] summary::after {
   .wrapper {
     flex-direction: column;
   }
+}
+
+.wrapper_normalIcon, .wrapper_pseudoElementsIcon {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .wrapper_title {

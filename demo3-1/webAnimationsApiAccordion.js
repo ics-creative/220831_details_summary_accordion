@@ -64,7 +64,7 @@ const setUpAccordion = () => {
 }
 
 /**
- * アニメーションの時間
+ * アニメーションの時間とイージング
  */
 const accordionTiming = {
   duration: 400,

@@ -67,38 +67,30 @@ details[open] .icon {
   background-position: center;
   transform-origin: center 43%;
   /* アコーディオンが閉じる時にアイコンをアニメーションさせます */
-  animation: 0.2s linear close-animation;
+  animation: 0.4s close-animation;
 }
 
 @keyframes close-animation {
-  0% {
+  from {
     transform: rotate(180deg);
   }
 
-  50% {
-    transform: rotate(90deg);
-  }
-
-  100% {
+  to {
     transform: rotate(0deg);
   }
 }
 
 /* アコーディオンが開いた時にアイコンをアニメーションさせます */
 details[open] summary::after {
-  animation: 0.2s linear open-animation forwards;
+  animation: 0.4s open-animation forwards;
 }
 
 @keyframes open-animation {
-  0% {
+  from {
     transform: rotate(0deg);
   }
 
-  50% {
-    transform: rotate(90deg);
-  }
-
-  100% {
+  to{
     transform: rotate(180deg);
   }
 }

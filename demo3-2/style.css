@@ -1,13 +1,3 @@
-details {
-  width: 500px;
-}
-
-@media (max-width: 750px) {
-  details {
-    width: 100%;
-  }
-}
-
 summary {
   cursor: pointer;
   /* display: list-item;以外を指定してデフォルトの三角形アイコンを消します */
@@ -79,7 +69,15 @@ details.is-opened .icon {
 
 /* --------レイアウト用のスタイル-------- */
 .wrapper {
+  width: 700px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+@media (max-width: 760px) {
+  .wrapper {
+    width: 100%;
+  }
 }

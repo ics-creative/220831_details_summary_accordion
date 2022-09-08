@@ -30,12 +30,12 @@ const setUpAccordion = () => {
         element.classList.toggle(IS_OPENED_CLASS);
 
         // アニメーションを実行
-        const closeAccordion = content.animate(closeAccordionKeyframes(content), accordionTiming);
+        const closeAnim = content.animate(closeAnimKeyframes(content), animTiming);
         // アニメーション実行中用の値を付与
         element.dataset.animStatus = RUNNING_VALUE;
 
         // アニメーションの完了後に
-        closeAccordion.onfinish = () => {
+        closeAnim.onfinish = () => {
           // open属性を取り除く
           element.removeAttribute("open");
           // アニメーション実行中用の値を取り除く
@@ -50,12 +50,12 @@ const setUpAccordion = () => {
         element.classList.toggle(IS_OPENED_CLASS);
 
         // アニメーションを実行
-        const openAccordion = content.animate(openAccordionKeyframes(content), accordionTiming);
+        const openAnim = content.animate(openAnimKeyframes(content), animTiming);
         // アニメーション実行中用の値を入れる
         element.dataset.animStatus = RUNNING_VALUE;
 
         // アニメーション完了後にアニメーション実行中用の値を取り除く
-        openAccordion.onfinish = () => {
+        openAnim.onfinish = () => {
           element.dataset.animStatus = "";
         };
       }
@@ -66,7 +66,7 @@ const setUpAccordion = () => {
 /**
  * アニメーションの時間とイージング
  */
-const accordionTiming = {
+const animTiming = {
   duration: 400,
   easing: "ease-out"
 };
@@ -74,7 +74,7 @@ const accordionTiming = {
 /**
  * アコーディオンを閉じるときのキーフレーム
  */
-const closeAccordionKeyframes = (content) => [
+const closeAnimKeyframes = (content) => [
   {
     height: content.offsetHeight + 'px', // height: "auto"だとうまく計算されないため要素の高さを指定する
     opacity: 1,
@@ -87,7 +87,7 @@ const closeAccordionKeyframes = (content) => [
 /**
  * アコーディオンを開くときのキーフレーム
  */
-const openAccordionKeyframes = (content) => [
+const openAnimKeyframes = (content) => [
   {
     height: 0,
     opacity: 0,

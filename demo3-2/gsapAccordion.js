@@ -24,7 +24,7 @@ const setUpAccordion = () => {
         element.classList.toggle(IS_OPENED_CLASS);
 
         // アニメーション実行
-        closeAnim(content, element).restart();
+        closingAnim(content, element).restart();
       } else {
         // アコーディオンを開くときの処理
         // アイコン操作用クラスを切り替える(クラスを付与)
@@ -34,7 +34,7 @@ const setUpAccordion = () => {
         element.setAttribute("open", "true");
 
         // アニメーション実行
-        openAnim(content).restart();
+        openingAnim(content).restart();
       }
     });
   });
@@ -43,7 +43,7 @@ const setUpAccordion = () => {
 /**
  * アコーディオンを閉じる時のアニメーション
  */
-const closeAnim = (content, element) => gsap.to(content, {
+const closingAnim = (content, element) => gsap.to(content, {
   height: 0,
   opacity: 0,
   duration: 0.4,
@@ -58,7 +58,7 @@ const closeAnim = (content, element) => gsap.to(content, {
 /**
  * アコーディオンを開く時のアニメーション
  */
-const openAnim = (content) => gsap.fromTo(
+const openingAnim = (content) => gsap.fromTo(
   content,
   {
     height: 0,

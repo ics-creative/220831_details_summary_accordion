@@ -19,7 +19,7 @@ const setUpAccordion = () => {
       event.preventDefault();
 
       // 連打防止用。アニメーション中だったらクリックイベントを受け付けないでリターンする
-      if (element.dataset.isRunning === RUNNING_VALUE) {
+      if (element.dataset.animStatus === RUNNING_VALUE) {
         return;
       }
 
@@ -32,14 +32,14 @@ const setUpAccordion = () => {
         // アニメーションを実行
         const closeAccordion = content.animate(closeAccordionKeyframes(content), accordionTiming);
         // アニメーション実行中用の値を付与
-        element.dataset.isRunning = RUNNING_VALUE;
+        element.dataset.animStatus = RUNNING_VALUE;
 
         // アニメーションの完了後に
         closeAccordion.onfinish = () => {
           // open属性を取り除く
           element.removeAttribute("open");
           // アニメーション実行中用の値を取り除く
-          element.dataset.isRunning = "";
+          element.dataset.animStatus = "";
         };
       } else {
         // アコーディオンを開くときの処理
@@ -52,11 +52,11 @@ const setUpAccordion = () => {
         // アニメーションを実行
         const openAccordion = content.animate(openAccordionKeyframes(content), accordionTiming);
         // アニメーション実行中用の値を入れる
-        element.dataset.isRunning = RUNNING_VALUE;
+        element.dataset.animStatus = RUNNING_VALUE;
 
         // アニメーション完了後にアニメーション実行中用の値を取り除く
         openAccordion.onfinish = () => {
-          element.dataset.isRunning = "";
+          element.dataset.animStatus = "";
         };
       }
     });

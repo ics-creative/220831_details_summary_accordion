@@ -1,3 +1,4 @@
+/* レイアウト・装飾用のスタイル */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -23,31 +24,33 @@ h1 {
   margin-bottom: 16px;
 }
 
+h2 {
+  font-size: 22px;
+}
+
 footer {
   margin-top: 40vh;
 }
 
-.navigation ul {
-  list-style: none;
-  color: #aac;
-}
-
-.navigation li {
-  margin-bottom: 12px;
-}
-
-.navigation a {
-  color: royalblue;
-  text-underline-offset: 4px;
-}
-
-.navigation a:visited {
-  color: #7050ff;
-}
-
-.navigation span {
-  display: inline-block;
-  margin-right: 16px;
+.navigation {
+  ul {
+    list-style: none;
+    color: #aac;
+  }
+  li {
+    margin-bottom: 12px;
+  }
+  a {
+    color: royalblue;
+    text-underline-offset: 4px;
+    &:visited {
+      color: #7050ff;
+    }
+  }
+  span {
+    display: inline-block;
+    margin-right: 16px;
+  }
 }
 
 .navigation__topPage span {
@@ -63,4 +66,18 @@ code {
   background-color: #d4e0ff;
   border-radius: 3px;
   padding: 0 3px;
+}
+
+/* --------レイアウト用のスタイル-------- */
+.wrapper {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.accordion-wrapper {
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: 16px;
 }

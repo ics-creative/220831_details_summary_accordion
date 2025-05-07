@@ -1,19 +1,9 @@
 summary {
-  /* display: list-item;以外を指定してデフォルトの三角形アイコンを消します */
-  display: block;
-}
-
-summary::-webkit-details-marker {
-  /* Safariで表示されるデフォルトの三角形アイコンを消します */
-  display: none;
-}
-
-.summary_inner{
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;  /* 初期値の display: list-item 以外を指定したので、デフォルトの三角形アイコンは非表示になる */
+  grid-template-columns:  1fr 24px;
+  gap: 6px;
   align-items: center;
+  cursor: pointer;
   padding: 16px 24px;
   border: 1px solid #d2beff;
   font-weight: bold;
@@ -25,10 +15,26 @@ summary::-webkit-details-marker {
   display: block;
   position: relative;
   width: 24px;
-  margin-left: 6px;
-  flex-shrink: 0;
   transform-origin: center 43%;
   transition: transform 0.4s;
+  /* アイコンのバーのスタイル */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 15px;
+    height: 3px;
+    background-color: #7050ff;
+  }
+  &::before {
+    left: 0;
+    transform: rotate(45deg);
+  }
+  &::after {
+    right: 0;
+    transform: rotate(-45deg);
+  }
 }
 
 /* アコーディオンが開いた時のスタイル */
@@ -36,68 +42,27 @@ details[open] .icon {
   transform: rotate(180deg);
 }
 
-/* アイコンのバーのスタイル */
-.icon::before,
-.icon::after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 15px;
-  height: 3px;
-  background-color: #7050ff;
-}
-
-.icon::before {
-  left: 0;
-  transform: rotate(45deg);
-}
-
-.icon::after {
-  right: 0;
-  transform: rotate(-45deg);
-}
-
-/* --------summaryタグの疑似要素でアイコンを作る場合-------- */
-.wrapper_pseudoElementsIcon .summary_inner::after {
-  content: "";
-  display: block;
-  width: 25px;
-  height: 16px;
-  margin-left: 6px;
-  flex-shrink: 0;
-  background-image: url("icon.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  transform-origin: center 43%;
-  /* アコーディオンが閉じる時にアイコンをアニメーションさせます */
-  animation: 0.4s close-animation;
-}
-
-@keyframes close-animation {
-  from {
-    transform: rotate(180deg);
-  }
-
-  to {
-    transform: rotate(0deg);
+/* --------summaryタグの疑似要素でアイコンを作る場合（画像を使用）-------- */
+.default summary {
+  &::after {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 16px;
+    margin-left: 6px;
+    background-image: url("icon.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform-origin: center 43%;
+      transition: transform 0.4s;
   }
 }
 
-/* アコーディオンが開いた時にアイコンをアニメーションさせます */
-details[open] .summary_inner::after {
-  animation: 0.4s open-animation forwards;
+details[open] summary::after {
+  transform: rotate(180deg);
 }
 
-@keyframes open-animation {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to{
-    transform: rotate(180deg);
-  }
-}
 
 /* --------アコーディオンの中身のスタイル-------- */
 .content {
@@ -106,50 +71,4 @@ details[open] .summary_inner::after {
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-/* --------レイアウト用のスタイル-------- */
-.wrapper {
-  display: flex;
-  margin: 0 auto;
-}
-
-.wrapper details {
-  margin-bottom: 16px;
-}
-
-.wrapper details:last-child {
-  margin-bottom: 0;
-}
-
-.wrapper_normalIcon, .wrapper_pseudoElementsIcon {
-  width: 700px;
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 1071px) {
-  .wrapper_normalIcon {
-    margin-right: 24px;
-  }
-}
-
-@media (max-width: 1070px) {
-  .wrapper {
-    flex-direction: column;
-  }
-
-  .wrapper_normalIcon {
-    margin-bottom: 24px;
-  }
-}
-
-@media (max-width: 760px) {
-  .wrapper_normalIcon, .wrapper_pseudoElementsIcon {
-    width: 100%;
-  }
-}
-
-.wrapper_title {
-  font-size: 22px;
 }

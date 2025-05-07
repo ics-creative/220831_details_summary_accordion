@@ -4,15 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>STEP 2 | detailsタグsummaryタグで作るアコーディオンUIサンプル</title>
+  <title>STEP 4aaa | detailsタグsummaryタグで作るアコーディオンUI</title>
   <link rel="stylesheet" href="../base.css">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <div class="wrapper">
-  <div class="custom accordion-wrapper">
-    <h2>アイコン設置用のタグでアイコンを作る場合</h2>
+  <div class="accordion-wrapper">
     <details>
       <summary>
         概要<span class="icon"></span>
@@ -69,73 +68,14 @@
       </ul>
     </details>
   </div>
-
-  <div class="default accordion-wrapper">
-    <h2>summaryタグの<code>::marker</code>をアレンジする例</h2>
-    <details>
-      <summary>
-        概要
-      </summary>
-      <div class="content">
-        折りたたまれている部分です。
-      </div>
-    </details>
-
-    <details>
-      <summary>
-        Q. buttonタグでもアコーディオンは作れそうですが？
-      </summary>
-      <div class="content">
-        <p>A. <code>details</code>タグと<code>summary</code>タグがオススメです。</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>
-        Q. inputタグでも作れますよね？
-      </summary>
-      <div class="content">
-        <p>A. <code>details</code>タグと<code>summary</code>タグがオススメです。</p>
-      </div>
-    </details>
-
-    <details>
-      <summary>
-        Q. アコーディオンのアニメーションがなんか変です！期待通りに動作しなくて困っています…。どうすればよいでしょうか。
-      </summary>
-      <div class="content">
-        <p>A. 以下のポイントを見直してみましょう。</p>
-        <ul>
-          <li>アコーディオンの中身(<code>summary</code>タグのすぐ下)を<code>div</code>タグなどで囲った部分には上下<code>padding</code>を持たせないこと。</li>
-          <li>デフォルトの挙動を無効化（<code>preventDefault()</code>）して、手動で<code>open</code>属性を管理できているか。</li>
-          <li>
-            アコーディオンを閉じるとき（<code>details</code>タグの<code>open</code>属性が取り除かれるとき）は一瞬で非表示になるので、アニメーション完了を待ってから<code>open</code>属性を手動で取り除くこと。
-          </li>
-        </ul>
-      </div>
-    </details>
-
-    <details>
-      <summary>
-        Q. 目次が見たいのですが。
-      </summary>
-        <ul class="content">
-          <li><a href="../demo1/index.html">STEP 1: HTMLでマークアップする</a></li>
-          <li><a href="../demo2/index.html">STEP 2: CSSで装飾する</a></li>
-          <li><a href="../demo3-1/index.html">STEP 3-1: JavaScriptでアニメーションを制御する[ブラウザ標準機能バージョン]</a></li>
-          <li><a href="../demo3-2/index.html">STEP 3-2: JavaScriptでアニメーションを制御する[GSAPバージョン]</a></li>
-          <li><a href="../index.html">目次一覧へ戻る</a></li>
-        </ul>
-    </details>
-  </div>
 </div>
 
 <footer>
   <nav class="navigation">
     <ul>
       <li><span>STEP 1:</span><a href="../demo1/index.html">HTMLでマークアップする</a></li>
-      <li class="navigation_currentPage"><span>STEP 2:</span>CSSで装飾する</li>
-      <li><span>STEP 3-0:</span><a href="../demo3-0/index.html">CSSだけでアニメーションをつける</a></li>
+      <li><span>STEP 2:</span><a href="../demo2/index.html">CSSで装飾する</a></li>
+      <li class="navigation_currentPage"><span>STEP 3-0:</span>CSSだけでアニメーションをつける</li>
       <li><span>STEP 3-1:</span><a href="../demo3-1/index.html">JavaScriptでアニメーションを制御する[ブラウザ標準機能バージョン]</a></li>
       <li><span>STEP 3-2:</span><a href="../demo3-2/index.html">JavaScriptでアニメーションを制御する[GSAPバージョン]</a></li>
       <li><a href="../index.html">目次一覧へ戻る</a></li>

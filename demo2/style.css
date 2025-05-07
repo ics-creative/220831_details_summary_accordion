@@ -8,6 +8,11 @@ summary {
   border: 1px solid #d2beff;
   font-weight: bold;
   color: #002255;
+
+  /* Safariで表示されるデフォルトの三角形アイコンを消します */
+  &::-webkit-details-marker {
+    display: none;
+  }
 }
 
 /* --------アイコンを作ります-------- */
@@ -42,9 +47,12 @@ details[open] .icon {
   transform: rotate(180deg);
 }
 
-/* --------summaryタグの疑似要素でアイコンを作る場合（画像を使用）-------- */
-.default summary {
-  &::after {
+/* --------
+  summaryタグの疑似要素でアイコンを作る場合
+  （注意）疑似要素のトランジションはSafari 17.4以前でうまくいかない
+-------- */
+.pseudoElement {
+  summary::after {
     content: "";
     display: block;
     width: 25px;
@@ -55,14 +63,13 @@ details[open] .icon {
     background-repeat: no-repeat;
     background-position: center;
     transform-origin: center 43%;
-      transition: transform 0.4s;
+    transition: transform 0.4s;
+  }
+
+  details[open] summary::after {
+    transform: rotate(180deg);
   }
 }
-
-details[open] summary::after {
-  transform: rotate(180deg);
-}
-
 
 /* --------アコーディオンの中身のスタイル-------- */
 .content {

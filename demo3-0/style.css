@@ -45,6 +45,11 @@ summary {
   font-weight: bold;
   color: #002255;
   cursor: pointer;
+
+  /* Safariで表示されるデフォルトの三角形アイコンを消します */
+  &::-webkit-details-marker {
+    display: none;
+  }
 }
 
 /* --------アイコンを作ります-------- */

@@ -1,0 +1,92 @@
+details {
+  /* --------アコーディオンの中身のスタイル-------- */
+  &::details-content {
+    transition: height 0.4s, opacity 0.4s, content-visibility 0.4s allow-discrete;
+    height: 0;
+    opacity: 0;
+    overflow: clip;
+    background-color: #f0f2ff;
+  }
+
+  /* --------アコーディオンの中身のスタイル（開いている時）-------- */
+  &[open]::details-content {
+    opacity: 1;
+  }
+
+  /* アコーディオンが開いた時のスタイル */
+  &[open] .icon {
+    transform: rotate(180deg);
+  }
+}
+
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords; /* height:0（数値型） → auto（文字型） のアニメーションを可能にするための指定 */
+  }
+  details[open]::details-content {
+    height: auto;
+  }
+}
+
+@supports not (interpolate-size: allow-keywords) {
+  details[open]::details-content {
+    height: 150px;
+    overflow-y: scroll; /* 溢れる場合はスクロール可能にする */
+  }
+}
+
+summary {
+  display: grid;
+  grid-template-columns:  1fr 24px;
+  gap: 6px;
+  align-items: center;
+  padding: 16px 24px;
+  border: 1px solid #d2beff;
+  font-weight: bold;
+  color: #002255;
+  cursor: pointer;
+
+  /* Safariで表示されるデフォルトの三角形アイコンを消します */
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+/* --------アイコンを作ります-------- */
+.icon {
+  display: block;
+  position: relative;
+  width: 24px;
+  margin-left: 6px;
+  flex-shrink: 0;
+  transform-origin: center 43%;
+  transition: transform 0.4s;
+
+  /* アイコンのバーのスタイル */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 15px;
+    height: 3px;
+    background-color: #7050ff;
+  }
+  &::before {
+    left: 0;
+    transform: rotate(45deg);
+  }
+  &::after {
+    right: 0;
+    transform: rotate(-45deg);
+  }
+}
+
+/* --------アコーディオンの中身のスタイル-------- */
+.content {
+  background-color: #f0f2ff;
+  padding: 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

@@ -1,14 +1,13 @@
 summary {
   /* display: list-item;以外を指定してデフォルトの三角形アイコンを消します */
   display: block;
+  /* Safariで表示されるデフォルトの三角形アイコンを非表示にします */
+  &::-webkit-details-marker {
+    display: none;
+  }
 }
 
-summary::-webkit-details-marker {
-  /* Safariで表示されるデフォルトの三角形アイコンを消します */
-  display: none;
-}
-
-.summary_inner{
+.summary_inner {
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -28,32 +27,30 @@ summary::-webkit-details-marker {
   flex-shrink: 0;
   transform-origin: center 43%;
   transition: transform 0.4s;
+
+  /* アイコンのバーのスタイル */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 15px;
+    height: 3px;
+    background-color: #7050ff;
+  }
+  &::before {
+    left: 0;
+    transform: rotate(45deg);
+  }
+  &::after {
+    right: 0;
+    transform: rotate(-45deg);
+  }
 }
 
 /* is-openedクラスが付与されたときのスタイル */
 details.is-opened .icon {
   transform: rotate(180deg);
-}
-
-/* アイコンのバーのスタイル */
-.icon::before,
-.icon::after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 15px;
-  height: 3px;
-  background-color: #7050ff;
-}
-
-.icon::before {
-  left: 0;
-  transform: rotate(45deg);
-}
-
-.icon::after {
-  right: 0;
-  transform: rotate(-45deg);
 }
 
 /* --------アコーディオンの中身のスタイル-------- */
@@ -69,26 +66,4 @@ details.is-opened .icon {
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-/* --------レイアウト用のスタイル-------- */
-.wrapper {
-  width: 700px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.wrapper details {
-  margin-bottom: 16px;
-}
-
-.wrapper details:last-child {
-  margin-bottom: 0;
-}
-
-@media (max-width: 760px) {
-  .wrapper {
-    width: 100%;
-  }
 }

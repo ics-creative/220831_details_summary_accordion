@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * ライブラリ(GSAP)を使ってアコーディオンのアニメーションを制御します
+ * アニメーションライブラリ(GSAP)を使ってアコーディオンのアニメーションを制御します
  */
 const setUpAccordion = () => {
   const details = document.querySelectorAll(".js-details");

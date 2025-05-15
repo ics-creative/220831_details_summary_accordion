@@ -72,7 +72,8 @@ const animTiming = {
 };
 
 /**
- * アコーディオンを閉じるときのキーフレーム
+ * アコーディオンを閉じるときのキーフレームを作成します。
+ * @param content {HTMLElement}
  */
 const closingAnimKeyframes = (content) => [
   {
@@ -85,7 +86,8 @@ const closingAnimKeyframes = (content) => [
 ];
 
 /**
- * アコーディオンを開くときのキーフレーム
+ * アコーディオンを開くときのキーフレームを作成します。
+ * @param content {HTMLElement}
  */
 const openingAnimKeyframes = (content) => [
   {
